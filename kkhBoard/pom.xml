@@ -1,0 +1,92 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.1.9.RELEASE</version>
+		<relativePath /> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>com.example</groupId>
+	<artifactId>kkhBoard</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>kkhBoard</name>
+	<description>Demo project for Spring Boot</description>
+
+	<properties>
+		<java.version>1.8</java.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+		</dependency>
+
+		<dependency> <!-- 단위 테스트를 위한것 -->
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency> <!-- web선택/ web안에 톰캣이 포함 -->
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+			<version>2.1.9.RELEASE</version>
+		</dependency>
+
+		<!-- jsp -->
+		<dependency> <!-- jstl 라이브러리 -->
+		    <groupId>javax.servlet</groupId>
+		    <artifactId>jstl</artifactId>
+		</dependency>
+		 
+		<dependency> <!-- 톰캣, 서버용, jsp를 읽는 라이브러리 -->
+		    <groupId>org.apache.tomcat.embed</groupId>
+		    <artifactId>tomcat-embed-jasper</artifactId>
+		</dependency>
+		
+		<dependency>
+               <groupId>jstl</groupId>
+               <artifactId>jstl</artifactId>
+               <version>1.2</version>
+          </dependency>
+
+		<!-- DB -->
+		<dependency> <!-- JDBC -->
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jdbc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.mariadb.jdbc</groupId>
+			<artifactId>mariadb-java-client</artifactId>
+		</dependency>
+		<dependency> <!-- mybatis  -->
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+			<version>3.3.0</version>
+		</dependency>
+		<dependency> <!-- mybatis와 spring 연결을 위한것 -->
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+			<version>1.2.3</version>
+		</dependency>
+		<!-- DB -->
+
+
+
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin> <!-- 중요한 플러그인! 실행 가능한 jar 또는 war 만들어주는 플러그인 -->
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
