@@ -5,11 +5,11 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>post-List</title>
+<title>post-List 페이지</title>
 </head>
 <body>
 
-<h2 style="text-align:center;"> 게시글 목록 </h2>
+<h2 style="text-align:center; margin-bottom:20px;"> 게시글 목록 </h2>
 <div class="container">
 <button class="btn btn-primary" onclick="location.href='/insert'">글쓰기</button>
 <table class="table table-hover">

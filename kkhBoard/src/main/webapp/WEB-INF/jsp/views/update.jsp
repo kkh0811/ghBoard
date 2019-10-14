@@ -4,12 +4,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Update 페이지</title>
 </head>
 <body>
-<h2 style="text-align:center;"> 게시글 수정 </h2>
+<h2 style="text-align:center; margin-bottom:20px;"> 게시글 수정 </h2>
  
-<div class="container">
+<div class="container" style="width:30%;">
     <form action="/updateProc" method="post">
       <div class="form-group">
         <label for="subject">제목</label>
