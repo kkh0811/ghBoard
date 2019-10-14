@@ -9,9 +9,9 @@
 </head>
 <body>
 
-<h2> 게시글 목록 </h2>
-<button class="btn btn-primary" onclick="location.href='/insert'">글쓰기</button>
+<h2 style="text-align:center;"> 게시글 목록 </h2>
 <div class="container">
+<button class="btn btn-primary" onclick="location.href='/insert'">글쓰기</button>
 <table class="table table-hover">
 <tr>
 <th>id</th>

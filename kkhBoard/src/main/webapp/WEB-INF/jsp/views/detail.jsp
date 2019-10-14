@@ -7,10 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h2> 게시글 상세 </h2>
-<button class="btn btn-primary" onclick="location.href='/update/${detail.id}'">수정</button> 
-<button class="btn btn-danger" onclick="location.href='/delete/${detail.id}'">삭제</button> 
-<div class="container">
+<h2 style="text-align:center;"> 게시글 상세 </h2>
+<div class="container" style="text-align:center;">
     <form action="/insertProc" method="post">
       <div class="form-group">
         <label>제목</label>
@@ -30,6 +28,8 @@
       </div>
       <!-- <button type="submit" class="btn btn-primary">작성</button> -->
     </form>
+    <button class="btn btn-primary" onclick="location.href='/update/${detail.id}'">수정</button> 
+	<button class="btn btn-danger" onclick="location.href='/delete/${detail.id}'">삭제</button> 
 </div>
 
 

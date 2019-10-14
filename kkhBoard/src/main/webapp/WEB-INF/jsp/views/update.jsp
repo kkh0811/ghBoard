@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h2> 게시글 수정 </h2>
+<h2 style="text-align:center;"> 게시글 수정 </h2>
  
 <div class="container">
     <form action="/updateProc" method="post">

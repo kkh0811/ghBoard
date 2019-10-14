@@ -36,7 +36,11 @@
         </if>
         <if test="title != null and content != null"> , </if>
         <if test="content != null">
-            content = #{content}
+            content = #{content},
+            modifiedDate = now(),
+            statusT_F = true
+            
+
         </if>
         WHERE id = #{id}
     </update>
