@@ -16,7 +16,7 @@
 	<name>kkhBoard</name>
 	<description>Demo project for Spring Boot</description>
 
-	<properties>
+	<properties> <!-- JDK 버전 (메이븐 컴파일 1.8 의미로) - 메이븐관련 -->
 		<java.version>1.8</java.version>
 	</properties>
 

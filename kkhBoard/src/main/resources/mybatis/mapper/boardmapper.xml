@@ -11,7 +11,7 @@
    
    <select id="getAll"
       resultType="com.example.kkhBoard.dto.BoardVO">
-      SELECT * FROM POST
+      SELECT * FROM POST ORDER BY id DESC; <!-- 정렬 추가됨 -->
    </select>
    
     <select id="boardDetail" parameterType="int" resultType="com.example.kkhBoard.dto.BoardVO">
@@ -39,8 +39,6 @@
             content = #{content},
             modifiedDate = now(),
             statusT_F = true
-            
-
         </if>
         WHERE id = #{id}
     </update>
