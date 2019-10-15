@@ -4,6 +4,7 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.example.kkhBoard.dto.BoardVO;
+import com.example.kkhBoard.dto.Search;
 
 // Mapper
 // 최근에는 서비스 계층에서 트랜잭션등에 대한 처리가 완료되기 때문에 인터페이스식으로 매퍼를 만듬.
@@ -15,12 +16,12 @@ import com.example.kkhBoard.dto.BoardVO;
 // 파일마다 객체를 계속 만들 필요가 없음 -> 어디에서든지 사용가능 (DI,의존성 주입)
 @Repository("com.example.kkhboard.mapper.BoardMapper")
 public interface BoardMapper {
- 
+	
 	// 포스팅 개수
 	public int boardCount() throws Exception;
 	
 	// 게시판 목록
-    public List<BoardVO> getAll() throws Exception;
+    public List<BoardVO> getAll(Search search) throws Exception;
     
     // 게시글 상세
     public BoardVO boardDetail(int id) throws Exception;
@@ -33,5 +34,5 @@ public interface BoardMapper {
     
     // 게시글 삭제  
     public int boardDelete(int id) throws Exception;
-
+    
 }

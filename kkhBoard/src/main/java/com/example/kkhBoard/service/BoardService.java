@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.kkhBoard.dto.BoardVO;
+import com.example.kkhBoard.dto.Search;
 import com.example.kkhBoard.mapper.BoardMapper;
 
 /* 서비스는 함께 실행되는 메소드를 하나의 트랜젝션으로 묶는다
@@ -19,8 +20,8 @@ public class BoardService {
     @Autowired // 타입정보를 기준으로 의존관계를 주입
     BoardMapper boardMapper; //BoardMapper interface를 autowired걸고 밑에 함수들을 call한다.
     
-    public List<BoardVO> getAll() throws Exception{
-        return boardMapper.getAll();
+    public List<BoardVO> getAll(Search search) throws Exception{
+        return boardMapper.getAll(search);
     }
     
     public BoardVO boardDetailService(int id) throws Exception{

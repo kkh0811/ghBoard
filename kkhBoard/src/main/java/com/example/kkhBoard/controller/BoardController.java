@@ -10,8 +10,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.kkhBoard.dto.BoardVO;
+import com.example.kkhBoard.dto.Search;
 import com.example.kkhBoard.service.BoardService;
 
 // 컨트롤러 역할을 하는 클래스
@@ -22,9 +24,14 @@ public class BoardController { //순수 자바 클래스이지만 애노테이�
     BoardService boardService; 
     
     @RequestMapping(value="post",method = RequestMethod.GET) // post를 호출하면 post메소드가 호출됨
-	public String post(Model model) throws Exception { // String이 오면 return을 String으로 함
-		List<BoardVO> list;		
-		list = boardService.getAll();	
+	public String post(Model model, @RequestParam(required = false, defaultValue = "title") String searchType
+, @RequestParam(required = false) String keyword) throws Exception { // String이 오면 return을 String으로 함
+    	
+		List<BoardVO> list;	
+		Search search = new Search();
+		search.setSearchType(searchType);
+		search.setKeyword(keyword);
+		list = boardService.getAll(search);	
 		model.addAttribute("list",list);	
 		return "post"; // 생성한 jsp명 (post.jsp), post.jsp를 뷰로 사용해서 사용자 응답을 함
 	}

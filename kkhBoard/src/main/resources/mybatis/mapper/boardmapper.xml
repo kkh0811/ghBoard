@@ -8,10 +8,35 @@
         FROM POST
     </select>
 
-   
+   <!-- 게시판 기본 기능 CRUD 시작 -->
    <select id="getAll"
       resultType="com.example.kkhBoard.dto.BoardVO">
-      SELECT * FROM POST ORDER BY id DESC; <!-- 정렬 추가됨 -->
+      SELECT * FROM POST 
+      
+      <!-- 하위 <if>에서 조건이 맞는 조건절이 있을 경우 WHERE 키워드 생성 -->
+      <trim prefix="WHERE" prefixOverrides="AND|OR"> <!-- 조건이 맞을 경우 조건절을 생성 -->
+      		<!-- 제목으로 인한 검색 -->
+			<if test="searchType=='title' and keyword != null and keyword != '' "> 
+				AND title like CONCAT('%', #{keyword}, '%')
+			</if>
+			<!-- 내용으로 인한 검색 -->
+			<if test="searchType=='content' and keyword != null and keyword != '' ">
+				AND content like CONCAT('%', #{keyword}, '%')
+			</if>
+			<!-- 제목+내용으로 인한 검색 -->
+			<if test="searchType=='titleContent' and keyword != null and keyword != '' ">
+				AND title like CONCAT('%', #{keyword}, '%')
+				OR content like CONCAT('%', #{keyword}, '%')
+			</if>
+			<!-- 작성자로 인한 검색 -->
+			<if test="searchType=='writer' and keyword != null and keyword != '' ">
+				AND writer = #{keyword}
+			</if>	
+		</trim>
+
+
+      
+      <!-- ORDER BY id DESC; 정렬 추가됨 -->
    </select>
    
     <select id="boardDetail" parameterType="int" resultType="com.example.kkhBoard.dto.BoardVO">
@@ -46,5 +71,5 @@
     <delete id="boardDelete" parameterType="int">
         DELETE FROM POST WHERE id = #{id}
     </delete>
-
+    <!-- 게시판 기본 기능 CRUD 시작 -->
 </mapper>
