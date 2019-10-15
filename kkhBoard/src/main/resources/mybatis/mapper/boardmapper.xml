@@ -5,10 +5,12 @@
    <!-- 게시판 기본 기능 CRUD 시작 -->
    <select id="getAll"
       resultType="com.example.kkhBoard.dto.BoardVO">
-      SELECT * FROM POST 
+      SELECT * FROM POST
       
       <!-- 하위 <if>에서 조건이 맞는 조건절이 있을 경우 WHERE 키워드 생성 -->
-      <trim prefix="WHERE" prefixOverrides="AND|OR"> <!-- 조건이 맞을 경우 조건절을 생성 -->
+      <trim prefix="WHERE" prefixOverrides="AND|OR"> <!-- 조건이 맞을 경우 조건절을 생성 -->  
+      		<!-- 삭제된 게시글이 아닐경우  -->
+      		STATUST_F = FALSE   
       		<!-- 제목으로 인한 검색 -->
 			<if test="searchType=='title' and keyword != null and keyword != '' "> 
 				AND title like CONCAT('%', #{keyword}, '%')
@@ -53,14 +55,22 @@
         <if test="title != null and content != null"> , </if>
         <if test="content != null">
             content = #{content},
-            modifiedDate = now(),
-            statusT_F = true
+            modifiedDate = now()
         </if>
         WHERE id = #{id}
     </update>
     
+    <!-- 진짜 삭제 할경우 쓸것  
     <delete id="boardDelete" parameterType="int">
         DELETE FROM POST WHERE id = #{id}
     </delete>
+    -->
+    
+    <update id="boardDelete" parameterType="int">
+    	UPDATE POST
+    	SET
+    	statusT_F = true
+    	WHERE id = #{id}
+    </update>
     <!-- 게시판 기본 기능 CRUD 끝 -->
 </mapper>

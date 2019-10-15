@@ -6,15 +6,28 @@
 <head>
 <!-- 테스트용 버튼이벤트를 사용하기 위한 Jquery 라이브러리 추가-->
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-
+<!-- Ajax 사용하기 위한 라이브러리 추가 -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
-$(document).on('click', '#btnSearch', function(e){
-	e.preventDefault();
-	var url = "post";
-	url = url + "?searchType=" + $('#searchType').val();
-	url = url + "&keyword=" + $('#keyword').val();
-	location.href = url;
-	console.log(url);
+$(document).ready(function() {
+	$("#btnSearch").click(function(){
+		console.log("clicked!");
+		$.ajax({
+	        type:"GET",
+	        url:"post",
+	        success: function(){
+		        var url = "post";
+		    	url = url + "?searchType=" + $('#searchType').val();
+		    	url = url + "&keyword=" + $('#keyword').val();
+		    	location.href = url;
+		    	console.log(url);
+				alert("ajax 호출성공!"+url);
+	        },
+	        error: function(error) {
+	            alert("오류발생! "+error);
+	        }  
+		});
+	});
 });
 </script>
 <meta charset="EUC-KR">
@@ -47,13 +60,12 @@ $(document).on('click', '#btnSearch', function(e){
 
 <table class="table table-hover">
 <tr>
-<th>id</th>
-<th>title</th>
-<th>content</th>
-<th>writer</th>
-<th>createdDate</th>
-<th>modifiedDate</th>
-<th>statusT_F</th>
+<th>게시판번호</th>
+<th>제목</th>
+<th>내용</th>
+<th>작성자</th>
+<th>만들날짜</th>
+<th>수정날짜</th>
 </tr>
 		<c:forEach items="${list}" var="post">
 		<tr onclick="location.href='/detail/${post.id}'">
@@ -63,7 +75,6 @@ $(document).on('click', '#btnSearch', function(e){
 			<th>${post.writer }</th>
 			<th>${post.createdDate }</th>
 			<th>${post.modifiedDate }</th>
-			<th>${post.statusT_F }</th>
 		</tr>
 		</c:forEach>
 		</table>

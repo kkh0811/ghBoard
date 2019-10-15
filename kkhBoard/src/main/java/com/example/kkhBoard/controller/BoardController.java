@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.kkhBoard.dto.BoardVO;
 import com.example.kkhBoard.dto.Search;
@@ -24,8 +25,8 @@ public class BoardController { //순수 자바 클래스이지만 애노테이�
     BoardService boardService; 
     
     @RequestMapping(value="post",method = RequestMethod.GET) // post를 호출하면 post메소드가 호출됨
-	public String post(Model model, @RequestParam(required = false, defaultValue = "title") String searchType
-, @RequestParam(required = false) String keyword) throws Exception { // String이 오면 return을 String으로 함
+	public String post(Model model, @RequestParam(required = false, defaultValue = "title") String searchType, 
+			@RequestParam(required = false) String keyword) throws Exception { // String이 오면 return을 String으로 함
     	
 		List<BoardVO> list;	 // 리스트를 불러온다
 		Search search = new Search(); // Search 객체 생성
@@ -80,6 +81,12 @@ public class BoardController { //순수 자바 클래스이지만 애노테이�
         return "redirect:/post";
     }
  
+    @ResponseBody
+    @RequestMapping(value="post/test", method=RequestMethod.GET) 
+    private String ajaxEx() throws Exception{  
+        return "한글테스트";
+    }
+    
 }
 
 
