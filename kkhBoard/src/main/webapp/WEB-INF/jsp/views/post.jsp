@@ -41,7 +41,7 @@ $(document).ready(function() {
 
 <!-- 검색 기능 추가 시작 -->
 <div style="float:right;">
-<div style="width:30%; display:inline-block;">
+<div style="width:31%; display:inline-block;">
 <select class = "form-control form-control-sm" name="searchType" id="searchType">
 <option value="title">제목</option>
 <option value="content">내용</option>
@@ -56,9 +56,7 @@ $(document).ready(function() {
 <button class="btn btn-sm btn-primary" name="btnSearch" id="btnSearch">검색</button>
 </div>
 </div>
-<!-- 검색 기능 추가 끝 -->
-
-<table class="table table-hover">
+<table style="margin-top:20px;" class="table table-hover">
 <tr>
 <th>게시판번호</th>
 <th>제목</th>
