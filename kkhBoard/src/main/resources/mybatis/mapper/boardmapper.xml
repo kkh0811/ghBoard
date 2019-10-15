@@ -2,12 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.kkhBoard.mapper.BoardMapper">
 
-	<select id="boardCount" resultType="int">
-        SELECT
-            COUNT(*)
-        FROM POST
-    </select>
-
    <!-- 게시판 기본 기능 CRUD 시작 -->
    <select id="getAll"
       resultType="com.example.kkhBoard.dto.BoardVO">
@@ -33,10 +27,7 @@
 				AND writer = #{keyword}
 			</if>	
 		</trim>
-
-
-      
-      <!-- ORDER BY id DESC; 정렬 추가됨 -->
+			ORDER BY id DESC; <!-- 정렬 추가됨 -->
    </select>
    
     <select id="boardDetail" parameterType="int" resultType="com.example.kkhBoard.dto.BoardVO">
@@ -71,5 +62,5 @@
     <delete id="boardDelete" parameterType="int">
         DELETE FROM POST WHERE id = #{id}
     </delete>
-    <!-- 게시판 기본 기능 CRUD 시작 -->
+    <!-- 게시판 기본 기능 CRUD 끝 -->
 </mapper>

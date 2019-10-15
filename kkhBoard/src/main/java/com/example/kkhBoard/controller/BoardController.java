@@ -27,12 +27,12 @@ public class BoardController { //순수 자바 클래스이지만 애노테이�
 	public String post(Model model, @RequestParam(required = false, defaultValue = "title") String searchType
 , @RequestParam(required = false) String keyword) throws Exception { // String이 오면 return을 String으로 함
     	
-		List<BoardVO> list;	
-		Search search = new Search();
-		search.setSearchType(searchType);
-		search.setKeyword(keyword);
-		list = boardService.getAll(search);	
-		model.addAttribute("list",list);	
+		List<BoardVO> list;	 // 리스트를 불러온다
+		Search search = new Search(); // Search 객체 생성
+		search.setSearchType(searchType); // search 객체에 파라메터로 받은 searchType 넣어줌
+		search.setKeyword(keyword); // search 객체에 파라메터로 받은 keyworkd 넣어줌
+		list = boardService.getAll(search);	// list객체에 파라메터로 받은 변수값이 해당되는 값들을 넣어줌
+		model.addAttribute("list",list);	// 뿌려주자
 		return "post"; // 생성한 jsp명 (post.jsp), post.jsp를 뷰로 사용해서 사용자 응답을 함
 	}
     

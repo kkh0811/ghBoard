@@ -6,6 +6,7 @@
 <head>
 <!-- 테스트용 버튼이벤트를 사용하기 위한 Jquery 라이브러리 추가-->
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+
 <script>
 $(document).on('click', '#btnSearch', function(e){
 	e.preventDefault();

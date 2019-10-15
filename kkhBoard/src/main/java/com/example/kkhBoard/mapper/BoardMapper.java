@@ -17,9 +17,6 @@ import com.example.kkhBoard.dto.Search;
 @Repository("com.example.kkhboard.mapper.BoardMapper")
 public interface BoardMapper {
 	
-	// 포스팅 개수
-	public int boardCount() throws Exception;
-	
 	// 게시판 목록
     public List<BoardVO> getAll(Search search) throws Exception;
     
