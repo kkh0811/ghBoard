@@ -11,17 +11,30 @@
 <script>
 $(document).ready(function() {
 	$("#btnSearch").click(function(){
-		console.log("clicked!");
+		searchType = $('#searchType').val();
+    	keyword = $('#keyword').val();
+    	console.log("클릭이벤트호출:"+searchType+""+keyword);
+		
 		$.ajax({
 	        type:"GET",
-	        url:"post",
-	        success: function(){
-		        var url = "post";
-		    	url = url + "?searchType=" + $('#searchType').val();
-		    	url = url + "&keyword=" + $('#keyword').val();
-		    	location.href = url;
-		    	console.log(url);
-				alert("ajax 호출성공!"+url);
+	        data: {searchType: searchType, keyword: keyword},
+	        dataType:"json",
+	        url:"/post/search",
+	        success: function(result){    
+		    	console.log("Ajax호출됨!");
+		    	//console.log(result);
+		    	var tr =""; // 변수 초기화
+				for (var str in result){
+				if(result[str]['modifiedDate']==null) result[str]['modifiedDate'] = ""; // Null값 출력 방지!
+				tr += "<tr><th>"+result[str]['id']+"</th>"
+						+"<th>"+result[str]['title']+"</th>"
+						+"<th>"+result[str]['content']+"</th>"
+						+"<th>"+result[str]['writer']+"</th>"
+						+"<th>"+result[str]['createdDate']+"</th>"
+						+"<th>"+result[str]['modifiedDate']+"</th></tr>";
+					}
+				console.log(tr);	
+				$("#tbody").html(tr); // 해당되는 필드에 tr값 html형식으로 넣어주기
 	        },
 	        error: function(error) {
 	            alert("오류발생! "+error);
@@ -65,6 +78,7 @@ $(document).ready(function() {
 <th>만들날짜</th>
 <th>수정날짜</th>
 </tr>
+<tbody id="tbody">
 		<c:forEach items="${list}" var="post">
 		<tr onclick="location.href='/detail/${post.id}'">
 			<th>${post.id }</th>
@@ -75,6 +89,7 @@ $(document).ready(function() {
 			<th>${post.modifiedDate }</th>
 		</tr>
 		</c:forEach>
+</tbody>
 		</table>
 		</div>
 <%@ include file="bootstrap.jsp" %>

@@ -18,24 +18,32 @@ import com.example.kkhBoard.dto.Search;
 import com.example.kkhBoard.service.BoardService;
 
 // 컨트롤러 역할을 하는 클래스
-@Controller // Controller 애노테이션적용 -> 자동으로 상속받는 형식(extends HttpServlet)의 클래스로 변환됨, 주소요청이 올때 어떤 함수를 줄지 결정.
+@Controller // Control 애노테이션적용 -> 자동으로 상속받는 형식(extends HttpServlet)의 클래스로 변환됨, 주소요청이 올때 어떤 함수를 줄지 결정.
 public class BoardController { //순수 자바 클래스이지만 애노테이션 적용해서 컨트롤러 역할을 하게함
  
     @Autowired 
     BoardService boardService; 
     
     @RequestMapping(value="post",method = RequestMethod.GET) // post를 호출하면 post메소드가 호출됨
-	public String post(Model model, @RequestParam(required = false, defaultValue = "title") String searchType, 
-			@RequestParam(required = false) String keyword) throws Exception { // String이 오면 return을 String으로 함
-    	
-		List<BoardVO> list;	 // 리스트를 불러온다
-		Search search = new Search(); // Search 객체 생성
-		search.setSearchType(searchType); // search 객체에 파라메터로 받은 searchType 넣어줌
-		search.setKeyword(keyword); // search 객체에 파라메터로 받은 keyworkd 넣어줌
-		list = boardService.getAll(search);	// list객체에 파라메터로 받은 변수값이 해당되는 값들을 넣어줌
-		model.addAttribute("list",list);	// 뿌려주자
+	public String post(Model model) throws Exception { // String이 오면 return을 String으로 함
+		List<BoardVO> list;		
+		list = boardService.getAll(null);	
+		model.addAttribute("list",list);	
 		return "post"; // 생성한 jsp명 (post.jsp), post.jsp를 뷰로 사용해서 사용자 응답을 함
 	}
+    
+    @ResponseBody
+    @RequestMapping("/post/search")
+    public List<BoardVO> search(@RequestParam(required = false, defaultValue = "title") String searchType, 
+            @RequestParam(required = false) String keyword) throws Exception {
+    	List<BoardVO> list;    // 리스트를 불러온다
+        Search search = new Search(); // Search 객체 생성
+        search.setSearchType(searchType); // search 객체에 파라메터로 받은 searchType 넣어줌
+        search.setKeyword(keyword); // search 객체에 파라메터로 받은 keyword 넣어줌
+        list = boardService.getAll(search);
+        return list;
+    }
+    
     
     @RequestMapping("/detail/{id}") // @Controller에서 @RequestMapping(value="값") 값을 찾아서 리턴 받는다.
     private String boardDetail(@PathVariable int id, Model model) throws Exception{ 
@@ -79,12 +87,6 @@ public class BoardController { //순수 자바 클래스이지만 애노테이�
     private String boardDelete(@PathVariable int id) throws Exception{
     	boardService.boardDeleteService(id);       
         return "redirect:/post";
-    }
- 
-    @ResponseBody
-    @RequestMapping(value="post/test", method=RequestMethod.GET) 
-    private String ajaxEx() throws Exception{  
-        return "한글테스트";
     }
     
 }
