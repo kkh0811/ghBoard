@@ -49,12 +49,9 @@
     <update id="boardUpdate" parameterType="com.example.kkhBoard.dto.BoardVO">
         UPDATE POST
             SET
-        <if test="title != null">
-            title = #{title}
-        </if>
-        <if test="title != null and content != null"> , </if>
-        <if test="content != null">
-            content = #{content},
+        <if test="title != null and content != null">
+        	title = #{title},
+        	content = #{content},
             modifiedDate = now()
         </if>
         WHERE id = #{id}

@@ -32,15 +32,17 @@ public class BoardController { //순수 자바 클래스이지만 애노테이�
 		return "post"; // 생성한 jsp명 (post.jsp), post.jsp를 뷰로 사용해서 사용자 응답을 함
 	}
     
-    @ResponseBody
+    @ResponseBody //스프링 버전이 3.0 이하일 경우는 @ResponseBody 쓰고 3.0 이상일 경우 RestController쓰기
     @RequestMapping("/post/search")
     public List<BoardVO> search(@RequestParam(required = false, defaultValue = "title") String searchType, 
             @RequestParam(required = false) String keyword) throws Exception {
+    	//RequestParam은 URL 뒤에 붙는 파라메터의 값을 가져올때 사용함. required(boolean)는 해당 파라미터값이 필수인지 아닌지 결정 
+		//PathVariable은 URL 처리할때쓰임
     	List<BoardVO> list;    // 리스트를 불러온다
         Search search = new Search(); // Search 객체 생성
         search.setSearchType(searchType); // search 객체에 파라메터로 받은 searchType 넣어줌
         search.setKeyword(keyword); // search 객체에 파라메터로 받은 keyword 넣어줌
-        list = boardService.getAll(search);
+        list = boardService.getAll(search); // list에 해당되는 객체 넣어줌
         return list;
     }
     

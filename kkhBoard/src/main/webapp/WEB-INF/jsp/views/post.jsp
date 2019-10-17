@@ -17,23 +17,24 @@ $(document).ready(function() {
 		
 		$.ajax({
 	        type:"GET",
-	        data: {searchType: searchType, keyword: keyword},
-	        dataType:"json",
+	        data: {searchType: searchType, keyword: keyword}, // Controller로 변수를 넘겨줍니다
+	        dataType:"json", // 데이터 타입이 json
 	        url:"/post/search",
 	        success: function(result){    
 		    	console.log("Ajax호출됨!");
-		    	//console.log(result);
+		    	console.log(result);
 		    	var tr =""; // 변수 초기화
 				for (var str in result){
+					var rStr = result[str];
 				if(result[str]['modifiedDate']==null) result[str]['modifiedDate'] = ""; // Null값 출력 방지!
-				tr += "<tr><th>"+result[str]['id']+"</th>"
-						+"<th>"+result[str]['title']+"</th>"
+				tr += "<tr><th>"+rStr.id+"</th>"
+						+"<th>"+rStr['title']+"</th>"
 						+"<th>"+result[str]['content']+"</th>"
 						+"<th>"+result[str]['writer']+"</th>"
 						+"<th>"+result[str]['createdDate']+"</th>"
 						+"<th>"+result[str]['modifiedDate']+"</th></tr>";
 					}
-				console.log(tr);	
+				//console.log(tr);	
 				$("#tbody").html(tr); // 해당되는 필드에 tr값 html형식으로 넣어주기
 	        },
 	        error: function(error) {
